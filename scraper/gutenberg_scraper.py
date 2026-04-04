@@ -12,7 +12,7 @@ class GutenbergScraper:
         self.parser = BookParser()
         self.author_cache = {}
 
-    def extract(self, items=100):
+    def extract(self, items=1100):
         results = []
         start_index = 1
         collected = 0
