@@ -5,6 +5,7 @@ from scraper.http_client import HttpClient
 from scraper.parser import BookParser
 from common.functions import format_author, clean_text_tag
 
+
 class GutenbergScraper:
     def __init__(self):
         self.url = "https://www.gutenberg.org"
@@ -12,7 +13,7 @@ class GutenbergScraper:
         self.parser = BookParser()
         self.author_cache = {}
 
-    def extract(self, items=1100):
+    def extract(self, items=10000):
         results = []
         start_index = 1
         collected = 0
@@ -81,7 +82,9 @@ class GutenbergScraper:
             author_link = author["href"]
 
             while True:
-                response = self.client.get(f"{self.url}{author_link}?start_index={start_index}")
+                response = self.client.get(
+                    f"{self.url}{author_link}?start_index={start_index}"
+                )
                 if not response:
                     break
 
